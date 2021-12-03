@@ -1,5 +1,7 @@
 #include "Student.h"
-
+#include <iostream>
+#include <string>
+#include <sstream>
 bool Student::operator==(const IComparable &ref){
     const Student *o = dynamic_cast<const Student*>(&ref);
     if (o==NULL) return false;
@@ -11,6 +13,20 @@ bool Student::operator==(const IComparable &ref){
         o->date.tm_mday == this->date.tm_mday
         ) return true;
     return false;
+}
+std::istream& operator>>(std::istream& is, Student & ref){
+    std::string s_date;
+    unsigned int number;
+    std::cin >> number >> ref.first_name >> ref.last_name >> ref.surname >> s_date;
+    std::stringstream ss(s_date);
+    char ch;
+    ss >> ref.date.tm_mday >> ch >> ref.date.tm_mon >> ch >> ref.date.tm_year;
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, Student & ref){
+    std::cout << ref.id << " " << ref.first_name << " " << ref.last_name << " " << ref.surname << " " << ref.date.tm_mday<<"."<<ref.date.tm_mon<<"."<<ref.date.tm_year;
+    return os;
 }
 
 Student::Student(std::string first_name,std::string last_name,std::string surname, tm date)
