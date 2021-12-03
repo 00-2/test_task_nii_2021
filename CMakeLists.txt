@@ -4,4 +4,4 @@ cmake_minimum_required(VERSION 3.10)
 project(TT_nii)
 
 # add the executable
-add_executable(TT_nii code/main.cpp code/Student.cpp)
+add_executable(TT_nii code/main.cpp code/entities/Student.cpp)
