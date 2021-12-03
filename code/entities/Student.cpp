@@ -37,3 +37,14 @@ Student::Student(std::string first_name,std::string last_name,std::string surnam
     this->date = date;    
 }
 Student::~Student(){}
+
+std::string Student::get_first_name() const{
+    return this->first_name;
+}
+
+std::string Student::get_last_name() const{
+    return this->last_name;
+}
+std::string Student::get_surname() const{
+    return this->surname;
+}
