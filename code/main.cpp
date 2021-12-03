@@ -1,4 +1,5 @@
-#include "Student.h"
+#include "entities/Student.h"
+#include <iostream>
 int main(){
     tm date;
     std::string date_string = "30.9.1988";
@@ -6,5 +7,6 @@ int main(){
     //printf("%d %d %d", date.tm_mday, date.tm_mon, date.tm_year);
     Student s = Student("name", "sec", "sur", date);
     Student s1 = Student("name", "test", "sur", date);
-    printf("%d", s==s1);
+    std::cin >> s;
+    std::cout << s;
 }
