@@ -13,11 +13,14 @@ int main(){
     Student s = Student("name", "sec", "sur", date);
     Student s1 = Student("name", "test", "sur", date);
     std::cin >> s;
-    std::cout << s;
     // work with file
     std::unordered_set<Student,StudentHashFunction> set_from_files;
     std::vector<std::string> name_of_files{"student_file_1.txt","student_file_2.txt"};
     //
     //ifstream file;
-    
+    set_from_files.insert(s);
+    set_from_files.insert(s1);
+    for (Student elem: set_from_files) {
+        std::cout << elem << "\n";
+    }
 }

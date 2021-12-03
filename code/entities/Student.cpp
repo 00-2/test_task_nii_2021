@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-bool Student::operator==(const IComparable &ref){
+bool Student::operator==(const Student &ref) const{
     const Student *o = dynamic_cast<const Student*>(&ref);
     if (o==NULL) return false;
     if (o->first_name == this->first_name &&
@@ -45,6 +45,6 @@ std::string Student::get_first_name() const{
 std::string Student::get_last_name() const{
     return this->last_name;
 }
-std::string Student::get_surname() const{
+std::string Student::get_surname() const {
     return this->surname;
 }
