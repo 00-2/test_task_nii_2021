@@ -3,9 +3,23 @@
 #include <unordered_set>
 #include <vector>
 #include <fstream>
+#include <ctime>
+
 
 const std::string subdir = "../files/";
 const std::vector<std::string> name_of_files{"student_file_1.txt","student_file_2.txt"};
+
+bool date_valid(tm &date){ 
+    int vyear = date.tm_year;
+    int vmonth = date.tm_mon;
+    int vday = date.tm_mday;
+    time_t r = mktime(&date);
+    if (r == -1 || (vday != date.tm_mday) || (vmonth != date.tm_mon) || (vyear != date.tm_year)) {
+      return false;
+    }
+    return true;
+}
+
 
 int main(){
     //tm date;
@@ -34,12 +48,27 @@ int main(){
         if (!fin) {
             std::cerr << "Error in opening the file:"<< name_of_file << std::endl;
         }
-    
-    /*vector<People> people;
-    People temp;
-    while (fin >> temp.name >> temp.surname >> temp.years) {
-        people.push_back(temp);
+        Student temp;
+        unsigned int i = 0;
+        while (fin >> temp) {
+            // for check date
+            tm temp_date;
+            temp_date.tm_mon = temp.get_date().tm_mon;
+            temp_date.tm_year = temp.get_date().tm_year;
+            temp_date.tm_mday = temp.get_date().tm_mday;
+            if (date_valid(temp_date)){
+                set_from_files.insert(temp);
+                temp.set_id(i);
+                std::cout << temp << std::endl;
+                std::cout << "\tdate:ok" <<std::endl;
+            }
+            i++;
+        }
     }
-    */
+    std::cout << "All files completed.\n\nResult:\n";
+    unsigned int i = 0;
+    for (auto entinity:set_from_files){
+        entinity.set_id(i++);
+        std::cout << entinity << std::endl;
     }
 }
