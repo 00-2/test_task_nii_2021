@@ -1,5 +1,10 @@
 #include "entities/Student.h"
 #include <iostream>
+#include <unordered_set>
+#include <vector>
+
+
+
 int main(){
     tm date;
     std::string date_string = "30.9.1988";
@@ -9,4 +14,10 @@ int main(){
     Student s1 = Student("name", "test", "sur", date);
     std::cin >> s;
     std::cout << s;
+    // work with file
+    std::unordered_set<Student,StudentHashFunction> set_from_files;
+    std::vector<std::string> name_of_files{"student_file_1.txt","student_file_2.txt"};
+    //
+    //ifstream file;
+    
 }
