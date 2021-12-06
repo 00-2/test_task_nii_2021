@@ -5,7 +5,7 @@
 #include <fstream>
 #include <ctime>
 
-const std::string subdir = "../files/";
+const std::string subdir = "files/";
 const std::vector<std::string> name_of_files{"student_file_1.txt","student_file_2.txt"};
 
 
@@ -124,7 +124,4 @@ int main(){
     }
 
     start_server(set_from_files);
-
-
-
 }
