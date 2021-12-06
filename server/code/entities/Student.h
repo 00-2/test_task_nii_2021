@@ -1,7 +1,5 @@
-#include "IComparable.h"
 #include "Object.h"
 #include <ctime>
-
 class Student:private Object
 {
     public:
@@ -11,6 +9,8 @@ class Student:private Object
         bool operator==(const Student &ref) const;
         friend std::istream& operator>>(std::istream& is, Student &ref);
         friend std::ostream& operator<<(std::ostream& os, Student &ref);
+        friend std::string serialize(Student & ref);
+        
         void set_id(unsigned int id){ this->id = id;}
         std::string get_first_name () const;
         std::string get_last_name() const;

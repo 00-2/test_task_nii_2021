@@ -35,8 +35,13 @@ std::istream& operator>>(std::istream& is, Student & ref){
 }
 
 std::ostream& operator<<(std::ostream& os, Student & ref){
-    std::cout << ref.id << " " << ref.first_name << " " << ref.last_name << " " << ref.date.tm_mday<<"."<<ref.date.tm_mon<<"."<<ref.date.tm_year;
+    os << ref.id << " " << ref.first_name << " " << ref.last_name << " " << ref.date.tm_mday<<"."<<ref.date.tm_mon<<"."<<ref.date.tm_year;
     return os;
+}
+std::string serialize(Student & ref){
+    std::stringstream ss;
+    ss << ref.first_name.size() <<"," << ref.first_name << ","<< ref.last_name.size() <<"," << ref.last_name << "," << ref.date.tm_mday<<"."<<ref.date.tm_mon<<"."<<ref.date.tm_year;
+    return ss.str();
 }
 std::string Student::get_first_name() const{
     return this->first_name;
