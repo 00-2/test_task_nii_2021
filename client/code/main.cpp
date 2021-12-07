@@ -1,7 +1,5 @@
 //
-//  Weather update client in C++
-//  Connects SUB socket to tcp://localhost:5556
-//  Collects weather updates and finds avg temp in zipcode
+// client zmq sub
 //
 
 #include <zmq.hpp>
@@ -10,7 +8,7 @@
 #include <unordered_set>
 #include <vector>
 #include <algorithm>
-#include "code/entities/Student.h"
+#include "entities/Student.h"
 
 
 int main (int argc, char *argv[])
@@ -18,12 +16,10 @@ int main (int argc, char *argv[])
     zmq::context_t context (1);
 
     //  Socket to talk to server
-    std::cout << "Collecting updates from weather server...\n" << std::endl;
+    std::cout << "Collecting updates from server...\n" << std::endl;
     zmq::socket_t subscriber (context, zmq::socket_type::sub);
     subscriber.connect("tcp://localhost:5556");
 
-    //  Subscribe to zipcode, default is NYC, 10001
-	const char *filter = (argc > 1)? argv [1]: "10001 ";
     subscriber.setsockopt(ZMQ_SUBSCRIBE, "",0);
 
     //  Process 100 updates
@@ -42,7 +38,6 @@ int main (int argc, char *argv[])
             std::string first_name,last_name, s_date;
             char c;
             while(iss >> size_fn >>c >> std::setw(size_fn) >> first_name >> c >> size_ln >> c >> std::setw(size_ln) >> last_name >> c >> s_date){
-                //std::cout << " " << first_name <<  " " << last_name  << " "<< date << std::endl;
                 tm date;
                 std::stringstream ss(s_date);
                 char ch;
