@@ -3,6 +3,8 @@
 
 Задание 3.SQL
 Ответ:
+
+
 CREATE TABLE table3 LIKE table1;
 
 ALTER TABLE table3
